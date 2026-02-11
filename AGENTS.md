@@ -6,6 +6,28 @@
 - `priv/static/` contains the tiny web dashboard assets served by the embedded HTTP server; keep generated bundles in `priv/static/js/`.
 - `firmware/` stores AtomVM bundle artifacts (`counter.avm`) plus wiring notes for the three-button + OLED setup.
 
+## Worktree Workflow
+- Every phase runs in its own worktree under `.worktrees/<branch_name>`; create one with `git worktree add .worktrees/<branch> -b <branch> main`.
+- Do not commit directly on `main`; checkout the worktree (e.g., `cd .worktrees/phase-1`) before editing, testing, or building firmware.
+- When a phase finishes, push the branch and prune stale worktrees via `git worktree remove .worktrees/<branch>` once merged.
+
+## Implementation Workflow & Phases
+- Follow the level-based roadmap in `PLAN.md` (L1 featureless prototype through L5 full dashboard). Each level builds strictly on the previous one.
+- Before starting work, record the intended tasks for the level inside `PROGRESS.md` so other agents can see in-flight efforts.
+- A level is considered complete only when all acceptance criteria listed in `PLAN.md` are satisfied, automated/manual tests are logged in `PROGRESS.md`, and the user grants an explicit greenlight.
+- Never advance to the next level until the current one is marked “Complete” both in `PLAN.md` and under “Current Status” in `PROGRESS.md`.
+
+## Testing Methodology
+- Default automation: `gleam test` (with `GLEAM_TARGET=erlang`) for unit/integration tests, plus `gleam format --check` to enforce style.
+- Hardware-in-loop script (`scripts/hil_smoke.sh`) must run for levels requiring physical validation; capture UART snippets or photos in `PROGRESS.md`.
+- Web API regression tests (`test/web_api_test.gleam`) should accompany any REST change; add property tests (`gleam check`) for invariants like monotonic borrow counts.
+- Manual OLED/button verification steps must be documented with timestamp and tester initials in the “Verification Log” section of `PROGRESS.md`.
+
+## Merge Request Process
+- Each level ends with a merge request (MR) from its worktree branch into `main`. Use GitHub CLI for consistency: `gh pr create --fill --base main --head <branch>`.
+- Include in the MR description: link to the level in `PLAN.md`, summary of acceptance criteria, test results (command outputs), and screenshots/logs for hardware features.
+- Await reviewer approval or explicit user greenlight before merging; once merged, prune the worktree and update `PLAN.md`, `PROGRESS.md`, and `README.md` to reflect the new baseline.
+
 ## Build, Test, and Development Commands
 - `gleam deps download && gleam build` compiles Gleam to BEAM bytecode; run whenever dependencies change.
 - `gleam run` boots the supervision tree on your host for quick iteration (keyboard shortcuts simulate button events).
