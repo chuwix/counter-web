@@ -48,6 +48,6 @@ Development progresses through five levels documented in `PLAN.md`, each ending 
 Refer to `PLAN.md` for full acceptance criteria and verification steps before advancing.
 
 ## Current Progress
-- Active level: **L1** (featureless working prototype).
+- Active phase: **Phase-0** (repository initialization) complete; **L1** not started.
 - Latest log entries and verification evidence live in `PROGRESS.md`. Update this file after every notable milestone (tests, manual checks, MR submission) so the next agent understands remaining work.
 - Each phase concludes with `gh pr create --fill --base main --head <branch>` once all acceptance criteria pass and the user grants a greenlight.
