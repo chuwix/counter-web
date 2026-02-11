@@ -28,6 +28,7 @@
 ## Merge Request Process
 - Each level ends with a merge request (MR) from its worktree branch into `main`. Use GitHub CLI for consistency: `gh pr create --fill --base main --head <branch>`.
 - Include in the MR description: link to the level in `PLAN.md`, summary of acceptance criteria, test results (command outputs), and screenshots/logs for hardware features.
+- Add a reasonable summary of the work done as either the MR description body or a follow-up comment if the template is too sparse.
 - Ensure `PLAN.md`, `PROGRESS.md`, and `README.md` are updated and ready for approval before opening the MR.
 - Await reviewer approval or explicit user greenlight before merging; once merged, prune the worktree.
 

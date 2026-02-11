@@ -15,4 +15,5 @@ This roadmap defines sequential levels (L1–L5). Do not start a level until the
 2. Run automated and manual tests listed above.
 3. Log results in `PROGRESS.md` under the corresponding level.
 4. Update `README.md` with current functionality and status.
-5. Create MR via `gh pr create --fill --base main --head <branch>` and wait for approval.
+5. Create a brief, reasonable summary of the work done and include it in the MR description or as a follow-up comment.
+6. Create MR via `gh pr create --fill --base main --head <branch>` and wait for approval.
