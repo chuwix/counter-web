@@ -47,7 +47,13 @@ Development progresses through five levels documented in `PLAN.md`, each ending 
 
 Refer to `PLAN.md` for full acceptance criteria and verification steps before advancing.
 
+## Build & Run (L1)
+1. `gleam deps download`
+2. `gleam build`
+3. `gleam test` (use `GLEAM_TARGET=erlang gleam test` for CI parity)
+4. `gleam run` (prints placeholder logs for display, input, and web subsystems)
+
 ## Current Progress
-- Active phase: **Phase-0** (repository initialization) complete; **L1** not started.
+- Active phase: **L1** (featureless prototype) in progress; Phase-0 complete.
 - Latest log entries and verification evidence live in `PROGRESS.md`. Update this file after every notable milestone (tests, manual checks, MR submission) so the next agent understands remaining work.
 - Each phase concludes with `gh pr create --fill --base main --head <branch>` once all acceptance criteria pass and the user grants a greenlight.
