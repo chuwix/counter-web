@@ -7,10 +7,10 @@
 - `firmware/` stores AtomVM bundle artifacts (`counter.avm`) plus wiring notes for the three-button + OLED setup.
 
 ## Worktree Workflow
-- Every phase runs in its own worktree under `.worktrees/<branch_name>`; create one with `git worktree add .worktrees/<branch> -b <branch> main`.
-- Do not commit directly on `main`; checkout the worktree (e.g., `cd .worktrees/phase-1`) before editing, testing, or building firmware.
+- Every phase runs in its own worktree under `.worktrees/<worktree_name>`. If the branch name includes `/`, replace `/` with `-` for the worktree directory (e.g., branch `feature/l1` uses worktree `.worktrees/feature-l1`). Create one with `git worktree add .worktrees/<worktree_name> -b <branch> main`.
+- Do not commit directly on `main`; checkout the worktree (e.g., `cd .worktrees/feature-l1`) before editing, testing, or building firmware.
 - Push the worktree branch after each meaningful milestone or commit (`git push -u origin <branch>` for the first push, `git push` thereafter) so intermediate results are shared.
-- When a phase finishes, push the branch and prune stale worktrees via `git worktree remove .worktrees/<branch>` once merged.
+- When a phase finishes, push the branch and prune stale worktrees via `git worktree remove .worktrees/<worktree_name>` once merged.
 
 ## Implementation Workflow & Phases
 - Follow the level-based roadmap in `PLAN.md` (L1 featureless prototype through L5 full dashboard). Each level builds strictly on the previous one.
